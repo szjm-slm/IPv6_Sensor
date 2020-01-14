@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<serviceGroup>
+    <service name="sayHello" scope="application"><!--接口名称-->
+        <description>
+            axis2 实现的webservice样例<!--接口描述-->
+        </description>
+        <messageReceivers>
+            <messageReceiver mep="http://www.w3.org/ns/wsdl/in-only" class="org.apache.axis2.rpc.receivers.RPCInOnlyMessageReceiver"/>
+            <messageReceiver mep="http://www.w3.org/ns/wsdl/in-out" class="org.apache.axis2.rpc.receivers.RPCMessageReceiver"/>
+        </messageReceivers>
+        <parameter name="ServiceClass">com.yxj.common.webservice.Hello</parameter><!--接口实现类-->
+
+    </service>
+    
+    <service name="Test" scope="application"><!--接口名称-->
+        <description>
+            axis2 实现的webservice样例<!--接口描述-->
+        </description>
+        <messageReceivers>
+            <messageReceiver mep="http://www.w3.org/ns/wsdl/in-only" class="org.apache.axis2.rpc.receivers.RPCInOnlyMessageReceiver"/>
+            <messageReceiver mep="http://www.w3.org/ns/wsdl/in-out" class="org.apache.axis2.rpc.receivers.RPCMessageReceiver"/>
+        </messageReceivers>
+        <parameter name="ServiceClass">com.yxj.common.webservice.Test</parameter><!--接口实现类-->
+
+    </service>
+    
+    <service name="Project" scope="application"><!--接口名称-->
+        <description>
+            	项目接口<!--接口描述-->
+        </description>
+        <messageReceivers>
+            <messageReceiver mep="http://www.w3.org/ns/wsdl/in-only" class="org.apache.axis2.rpc.receivers.RPCInOnlyMessageReceiver"/>
+            <messageReceiver mep="http://www.w3.org/ns/wsdl/in-out" class="org.apache.axis2.rpc.receivers.RPCMessageReceiver"/>
+        </messageReceivers>
+        <parameter name="ServiceClass">com.yxj.common.webservice.ProjectWebService</parameter><!--接口实现类-->
+    </service>
+    
+    <service name="DataProject" scope="application"><!--接口名称-->
+        <description>
+            	项目接口<!--接口描述-->
+        </description>
+        <messageReceivers>
+            <messageReceiver mep="http://www.w3.org/ns/wsdl/in-only" class="org.apache.axis2.rpc.receivers.RPCInOnlyMessageReceiver"/>
+            <messageReceiver mep="http://www.w3.org/ns/wsdl/in-out" class="org.apache.axis2.rpc.receivers.RPCMessageReceiver"/>
+        </messageReceivers>
+        <parameter name="ServiceClass">com.yxj.common.webservice.DataProjectWebService</parameter><!--接口实现类-->
+    </service>
+</serviceGroup>
