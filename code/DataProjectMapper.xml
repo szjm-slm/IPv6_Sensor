@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yxj.system.dao.DataProjectDao">
+	<resultMap id="base" type="dataProject" >
+		<id column="ID" property="id"/>
+		<id column="XMBH" property="xmbh"/>
+		<id column="XMMC" property="xmmc"/>
+		<id column="XMFZR" property="xmfzr"/>
+		<id column="JDBH" property="jdbh"/>
+		<id column="JDWD" property="jdwd"/>
+		<id column="JDSD" property="jdsd"/>
+		<id column="JDWZ" property="jdwz"/>
+	</resultMap>
+ 	
+ 	<select id="getProjectByPage"  resultMap="base">
+       SELECT * FROM DATA_PROJECT WHERE 1=1 
+       <if test="param.xmbh!= null and param.xmbh!=''" >
+        AND xmbh LIKE CONCAT('%',#{param.xmbh},'%')
+       </if>
+       <if test="param.xmmc!= null and param.xmmc!=''">
+        AND xmmc LIKE CONCAT('%',#{param.xmmc},'%')
+       </if>
+       <if test="param.xmfzr!= null and param.xmfzr!=''">
+        AND xmfzr LIKE CONCAT('%',#{param.xmfzr},'%')
+       </if>
+       <if test="param.jdbh!= null and param.jdbh!=''">
+        AND jdbh LIKE CONCAT('%',#{param.jdbh},'%')
+       </if>
+    </select> 
+    
+    <select id="getProjectByXmbhOrJdbh"  resultMap="base">
+       SELECT * FROM DATA_PROJECT WHERE xmbh = #{xmbh} OR jdbh = #{jdbh}
+    </select>
+    
+      
+  <insert id="addProject">
+  	insert into DATA_PROJECT(xmbh,xmmc,xmfzr,jdbh,jdwd,jdsd,jdwz)
+  	values(#{param.xmbh},#{param.xmmc},#{param.xmfzr},#{param.jdbh},#{param.jdwd},#{param.jdsd},#{param.jdwz})
+  </insert>
+  
+  <update id="updateProject">
+  	update DATA_PROJECT 
+  	<trim prefix="set" suffixOverrides=","> 
+  		<if test="param.xmbh!= null and param.xmbh!=''">
+        xmbh=#{param.xmbh},
+       </if>
+  		<if test="param.xmmc!= null and param.xmmc!=''">
+        xmmc=#{param.xmmc},
+       </if>
+       <if test="param.xmfzr!= null and param.xmfzr!=''">
+        xmfzr=#{param.xmfzr},
+       </if>
+       <if test="param.jdwd!= null and param.jdwd!=''">
+        jdwd=#{param.jdwd},
+       </if>
+       <if test="param.jdsd!= null and param.jdsd!=''">
+        jdsd=#{param.jdsd},
+       </if>
+       <if test="param.jdwz!= null and param.jdwz!=''">
+        jdwz=#{param.jdwz},
+       </if>
+  	</trim> 
+  	where jdbh = #{param.jdbh}
+  </update>
+  
+  <!-- 根据ids集合批量删除-->
+    <delete id="deleteProject">
+    	delete from DATA_PROJECT
+    	where jdbh in
+        <foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+                #{item}       
+        </foreach>
+    </delete>
+
+</mapper>
